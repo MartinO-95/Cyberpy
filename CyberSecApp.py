@@ -321,6 +321,7 @@ infomenu.add_command(label="Time and date", command=runtimedate)
 appmenu.add_cascade(label="File", menu=filemenu) # makes the options underneath File cascade or dropdown
 appmenu.add_cascade(label="Edit", menu=editmenu)
 appmenu.add_cascade(label="Utilities", menu=programmenu)
+appmenu.add_cascade(label="Websites",menu=webmenu)
 appmenu.add_cascade(label="Network testing", menu=commandmenu)
 appmenu.add_cascade(label="Information", menu=infomenu)
 #---Misc options---
