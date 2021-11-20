@@ -123,7 +123,6 @@ def runtasklist():
 def runcalc():
     calc=os.popen('calc.exe')
 
-
 #---Network test definitions---
 #Address resolution protocol (ARP)
 def runarp():
@@ -191,6 +190,11 @@ def openvirusscan():
 #Open CyberChef webpage
 def opencyberchef():
     webbrowser.open_new('https://gchq.github.io/CyberChef/')
+#What's my name search
+def namesearch():
+    namecriteria=simpledialog.askstring(title="Enter a username",prompt='Name')
+    searchname='https://whatsmyname.app/?q='+namecriteria
+    webbrowser.open_new(searchname)
 
 #---Cyber security Frameworks---
 #Open OSINTframework webpage
@@ -204,12 +208,16 @@ def openmitre():
 #Search for URL's containing specified text
 def runinurl():
     googlecriteria=simpledialog.askstring(title="Enter a key term you wish to search for on the internet",prompt='Search key in URL')
-    searchgoogle="https://www.google.com/search?q=inurl:"+googlecriteria
+    searchgoogle="https://www.google.com/search?q=allinurl:"+googlecriteria
+    webbrowser.open_new(searchgoogle)
+def runintitle():
+    googlecriteria=simpledialog.askstring(title="Enter a key term you wish to search for on the internet",prompt='Search key in Title')
+    searchgoogle="https://www.google.com/search?q=allintitle:"+googlecriteria
     webbrowser.open_new(searchgoogle)
 #Search for specified text
 def runintext():
     googlecriteria=simpledialog.askstring(title="Enter a key term you wish to search for on the internet",prompt='Search key in Text')
-    searchgoogle="https://www.google.com/search?q=intext:"+googlecriteria
+    searchgoogle="https://www.google.com/search?q=allintext:"+googlecriteria
     webbrowser.open_new(searchgoogle)
 
 #---Information definitions--- 
@@ -305,14 +313,17 @@ webmenu.add_cascade(label="Website tools",menu=webtoolmenu)
 webmenu.add_cascade(label= "Cyber security documents", menu=cyframemenu)
 webmenu.add_cascade(label="Google dorks",menu=dorkmenu)
 #Web tools menu
+webtoolmenu.add_command(label="whatsmyname",command=namesearch)
 webtoolmenu.add_command(label="urlScan.io",command=openrurlscan)
 webtoolmenu.add_command(label="VirusTotal",command=openvirusscan)
 webtoolmenu.add_command(label="CyberChef",command=opencyberchef)
+
 #Cyber security framework sites
 cyframemenu.add_command(label="OSINT Framework",command=openosint)
 cyframemenu.add_command(label="Attack Mitre",command=openmitre)
 #Dork menu
 dorkmenu.add_command(label="INURL", command=runinurl)
+dorkmenu.add_command(label="INTITLE",command=runintitle)
 dorkmenu.add_command(label="INTEXT",command=runintext)
 #Infomenu window
 infomenu = Menu(appmenu, tearoff=0)
