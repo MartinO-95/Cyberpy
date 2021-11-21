@@ -7,7 +7,6 @@
 #System modules
 import os
 import webbrowser
-import platform
 #tkinter graphical user interface modules:
 from tkinter import * 
 from tkinter import filedialog 
