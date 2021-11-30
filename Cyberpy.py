@@ -7,6 +7,7 @@
 #System modules
 import os
 import webbrowser
+import pyfiglet
 #tkinter graphical user interface modules:
 from tkinter import * 
 from tkinter import filedialog 
@@ -19,12 +20,8 @@ from tkinter.scrolledtext import ScrolledText
 from datetime import datetime
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
-#global variables---------------------------------------------------------------------------------------------------------------------------
-global name 
-global name2
-#-------------------------------------------------------------------------------------------------------------------------------------------
-
 #Defintions for program functions-----------------------------------------------------------------------------------------------------------
+#---Titles---
 #---File option definitions---
 #Open a textfile in a specific folder using a built in file dialog window.
 def onOpen(): 
@@ -114,13 +111,13 @@ def runnotepad():
     os.popen ("notepad.exe")
 #Open system information
 def runsysinf():
-    sysinf=os.popen('msinfo32.exe')
+    os.popen('msinfo32.exe')
 #Open task manager
 def runtasklist():
-    tasklist=os.popen('taskmgr.exe')
+    os.popen('taskmgr.exe')
 #Open calculator
 def runcalc():
-    calc=os.popen('calc.exe')
+    os.popen('calc.exe')
 
 #---Network test definitions---
 #Address resolution protocol (ARP)
@@ -191,7 +188,7 @@ def opencyberchef():
     webbrowser.open_new('https://gchq.github.io/CyberChef/')
 #What's my name search
 def namesearch():
-    namecriteria=simpledialog.askstring(title="Enter a username",prompt='Name')
+    namecriteria=simpledialog.askstring(title="WhatsMyName",prompt='Enter username')
     searchname='https://whatsmyname.app/?q='+namecriteria
     webbrowser.open_new(searchname)
 
@@ -236,7 +233,7 @@ def runtimedate():     #edit menu Time/Date option
     now = datetime.now()
     # dd/mm/YY H:M:S
     dtString = now.strftime("%d/%m/%Y %H:%M:%S")
-    label = messagebox.showinfo("Time/Date", dtString)
+    messagebox.showinfo("Time/Date", dtString)
 
 #---Misc options---
 #Command line to notepad input/output
@@ -265,7 +262,7 @@ appmenu = Menu(app) # sets up the menu on the base window.
 #---Notepad menu---
 #creating scrollable notepad window
 notepad = ScrolledText(app)
-notepad.pack(side = 'bottom', fill = 'x')
+notepad.pack(fill = 'both')
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 #User input functions-----------------------------------------------------------------------------------------------------------------------
@@ -312,8 +309,8 @@ webmenu.add_cascade(label="Website tools",menu=webtoolmenu)
 webmenu.add_cascade(label= "Cyber security documents", menu=cyframemenu)
 webmenu.add_cascade(label="Google dorks",menu=dorkmenu)
 #Web tools menu
-webtoolmenu.add_command(label="whatsmyname",command=namesearch)
-webtoolmenu.add_command(label="urlScan.io",command=openrurlscan)
+webtoolmenu.add_command(label="WhatsMyName",command=namesearch)
+webtoolmenu.add_command(label="UrlScan.io",command=openrurlscan)
 webtoolmenu.add_command(label="VirusTotal",command=openvirusscan)
 webtoolmenu.add_command(label="CyberChef",command=opencyberchef)
 
