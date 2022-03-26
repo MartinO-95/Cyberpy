@@ -6,8 +6,8 @@
 #Imported modules---------------------------------------------------------------------------------------------------------------------------
 #System modules
 import os
+import subprocess
 import webbrowser
-import pyfiglet
 #tkinter graphical user interface modules:
 from tkinter import * 
 from tkinter import filedialog 
@@ -247,6 +247,13 @@ def runcommand():
         notepad.insert(0.0, str(runcommandd))    
     elif (runcommandi==""):
         messagebox.showinfo(title="Error", message="Error. Try again!")
+#Show Command
+def runshowcommand():
+    showcommandd=""
+    showcommandi=subprocess.call('powershell.exe show-command')
+    for showcommando in showcommandi.readlines():
+        showcommandd=showcommandd+showcommando
+    notepad.insert(0.0, str(showcommandd))
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
 #Base window setup--------------------------------------------------------------------------------------------------------------------------
@@ -324,6 +331,7 @@ dorkmenu.add_command(label="INTEXT",command=runintext)
 #Infomenu window
 infomenu = Menu(appmenu, tearoff=0)
 infomenu.add_command(label="Command-line help", command=gethelp)
+infomenu.add_command(label="Show-Commands", command=runshowcommand)
 infomenu.add_command(label="Time and date", command=runtimedate)
 #Main menu option in appmenu
 appmenu.add_cascade(label="File", menu=filemenu) # makes the options underneath File cascade or dropdown
