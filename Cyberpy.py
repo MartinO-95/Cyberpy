@@ -228,6 +228,17 @@ def gethelp():
         notepad.insert(0.0, str(gethelpd))    
     elif (gethelpi==""):
         messagebox.showinfo(title="Error", message="Error. Try again!")
+#Find FIles throughout the entire system
+def getchilditem():
+    getchilditemd=""
+    getchilditemi=simpledialog.askstring(title="Find File",prompt="Type the file you want to find: ")
+    if getchilditemi is not None and getchilditemi != "":
+        getchilditemo=subprocess.call('powershell.exe '+'get-childitem -path C:\*'+getchilditemi+'*'+getchilditemd)
+        for getchilditemo in getchilditemo.readlines():
+            getchilditemd=getchilditemd+str(getchilditemo)
+        notepad.insert(0.0, str(getchilditemd))    
+    elif (getchilditemi==""):
+        messagebox.showinfo(title="Error", message="Error. Try again!")
 #Date and time
 def runtimedate():     #edit menu Time/Date option
     now = datetime.now()
@@ -330,6 +341,7 @@ dorkmenu.add_command(label="INTITLE",command=runintitle)
 dorkmenu.add_command(label="INTEXT",command=runintext)
 #Infomenu window
 infomenu = Menu(appmenu, tearoff=0)
+infomenu.add_command(label="Find File", command=getchilditem)
 infomenu.add_command(label="Command-line help", command=gethelp)
 infomenu.add_command(label="Show-Commands", command=runshowcommand)
 infomenu.add_command(label="Time and date", command=runtimedate)
